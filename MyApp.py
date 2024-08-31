@@ -27,8 +27,9 @@ def progress_hook(d):
         downloaded_bytes = d.get('downloaded_bytes')
         if total_bytes and downloaded_bytes:
             progress = downloaded_bytes / total_bytes
+            percent = progress * 100
             progress_bar.progress(progress)
-            status_text.text(f"Downloading: {d['filename']} ({d['_percent_str']} complete)")
+            status_text.text(f"Downloading: {d['filename']} ({percent:.2f}% complete)")
 
     elif d['status'] == 'finished':
         progress_bar.progress(1.0)
